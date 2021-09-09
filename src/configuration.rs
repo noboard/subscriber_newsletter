@@ -13,7 +13,7 @@ pub struct DatabaseSettings {
     pub database_name: String,
 }
 
-#[derive(serde::Desrialize)]
+#[derive(serde::Deserialize)]
 pub struct ApplicationSettings {
     pub port: u16,
     pub host: String,
