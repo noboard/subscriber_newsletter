@@ -1,5 +1,5 @@
 [package]
-name = "subscriber_newletter"
+name = "subscriber_newsletter"
 version = "0.1.0"
 edition = "2018"
 
@@ -17,7 +17,7 @@ path = "src/lib.rs"
 # have a look at the workspace feature - we'll cover it later on.
 [[bin]]
 path = "src/main.rs"
-name = "subscriber_newletter"
+name = "subscriber_newsletter"
 
 [dependencies]
 # We are using the latest beta release of actix-web

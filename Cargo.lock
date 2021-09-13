@@ -1943,7 +1943,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "subscriber_newletter"
+name = "subscriber_newsletter"
 version = "0.1.0"
 dependencies = [
  "actix-http",
