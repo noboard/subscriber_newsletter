@@ -1,14 +1,14 @@
 #! spec.yaml
-name: subscriber_newsletter
+name: subscribernewsletter
 # Check https://www.digitalocean.com/docs/app-platform/#regional-availability
 # for a list of all the available options.
 # You can get region slugs from
 # https://www.digitalocean.com/docs/platform/availability-matrix/
 # They must specified lowercased.
 # `fra` stands for Frankfurt (Germany - EU)
-region: fra
+region: lon1
 services:
-  - name: subscriber_newletter
+  - name: subscribernewsletter
     # Relative to the repository root
     dockerfile_path: Dockerfile
     source_dir: .
