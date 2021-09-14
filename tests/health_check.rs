@@ -1,6 +1,6 @@
 use std::net::TcpListener;
-use subscriber_newletter::configuration::{get_configuration, DatabaseSettings};
-use subscriber_newletter::telemetry::{get_subscriber, init_subscriber};
+use subscriber_newsletter::configuration::{get_configuration, DatabaseSettings};
+use subscriber_newsletter::telemetry::{get_subscriber, init_subscriber};
 use sqlx::{Connection, Executor,  PgPool, PgConnection};
 use uuid::Uuid;
 use once_cell::sync::Lazy;
@@ -43,7 +43,7 @@ async fn spawn_app() -> TestApp {
     let connection_pool = configure_database(&configuration.database)
         .await;
 
-    let server = subscriber_newletter::startup::run(
+    let server = subscriber_newsletter::startup::run(
             listener,
             connection_pool.clone()
         )
@@ -58,7 +58,8 @@ async fn spawn_app() -> TestApp {
 }
 
 pub async fn configure_database(config: &DatabaseSettings) -> PgPool {
-    let mut connection = PgConnection::connect(&config.connection_string_without_db())
+
+    let mut connection = PgConnection::connect_with(&config.without_db())
         .await
         .expect("Failed to connect to postgres database");
 
@@ -67,7 +68,7 @@ pub async fn configure_database(config: &DatabaseSettings) -> PgPool {
         .await
         .expect("Failed to create database");
 
-    let connection_pool = PgPool::connect(&config.connection_string())
+    let connection_pool = PgPool::connect_with(config.with_db())
         .await
         .expect("Failed to connect to postgres to create connection pool");
     sqlx::migrate!("./migrations")

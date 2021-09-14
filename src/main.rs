@@ -19,8 +19,8 @@ async fn main() -> std::io::Result<()> {
     //Panic if we can't read the configuration file
     let configuration = get_configuration().expect("Failed to read configuration");
     let connection_pool = PgPoolOptions::new()
-        .connect_timeout(std::time::Duration::from_secs(2))
-        .connect(&configuration.database.connection_string())
+        .connect_timeout(std::time::Duration::from_secs(30))
+        .connect_with(configuration.database.with_db())
         .await
         .expect("Failed to connect to postgres database");
 
