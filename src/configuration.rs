@@ -29,7 +29,7 @@ impl DatabaseSettings {
         let ssl_mode = if self.require_ssl {
             PgSslMode::Require
         } else {
-            PgSslMode: Prefer
+            PgSslMode::Prefer
         };
 
         PgConnectOptions::new()
