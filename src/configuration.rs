@@ -2,6 +2,7 @@ use sqlx::postgres::{PgConnectOptions, PgSslMode};
 use std::convert::{TryFrom, TryInto};
 use serde_aux::field_attributes::deserialize_number_from_string;
 
+
 #[derive(serde::Deserialize)]
 pub struct Settings {
     pub database: DatabaseSettings,
@@ -20,9 +21,6 @@ pub struct DatabaseSettings {
 }
 
 impl DatabaseSettings {
-    pub fn with_db(&self) -> PgConnectOptions {
-        self.without_db().database(&self.database_name)
-    }
 
     pub fn without_db(&self) -> PgConnectOptions {
 
@@ -38,6 +36,10 @@ impl DatabaseSettings {
             .password(&self.password)
             .port(self.port)
             .ssl_mode(ssl_mode)
+    }
+
+    pub fn with_db(&self) ->  PgConnectOptions {
+        self.without_db().database(&self.database_name)
     }
 }
 
