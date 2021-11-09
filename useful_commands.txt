@@ -1,0 +1,11 @@
+-To deploy app to Digital Ocean
+    doctl apps create --spec spec.yaml
+
+-To create a new migration
+    sqlx migrate add <migration name>
+
+-To deploy migration at command line
+    sqlx migrate run
+
+-To use init_db script, but not run the docker process
+    SKIP_DOCKER=true ./init_db.sh
