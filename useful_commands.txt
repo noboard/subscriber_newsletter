@@ -7,5 +7,17 @@
 -To deploy migration at command line
     sqlx migrate run
 
+-To initilise app and database
+    ./scripts/init_db.sh
+
 -To use init_db script, but not run the docker process
-    SKIP_DOCKER=true ./init_db.sh
+    SKIP_DOCKER=true ./scripts/init_db.sh
+
+-To add a cargo dependency for dev only
+    cargo add <name> --vers <version number> --dev
+
+-To get the application id from Digital Ocean
+    doctl apps list --format ID
+
+-To update the application with the latest values in the spec.yaml file
+    doctl apps update <APP_ID> --spec spec.yaml
