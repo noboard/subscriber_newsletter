@@ -41,6 +41,7 @@ impl DatabaseSettings {
     }
 
     pub fn with_db(&self) ->  PgConnectOptions {
+
         self.without_db().database(&self.database_name)
     }
 }
@@ -81,7 +82,9 @@ pub fn get_configuration() -> Result<Settings, config::ConfigError> {
 
     //Detect the running environment
     //Default to 'local' if unspecified.
-    let environment: Environment = std::env::var("APP_ENVIRONMENT")
+
+    let environment: Environment = std::env::var("APP_ENVIRONM\
+    ENT")
         .unwrap_or_else(|_| "local".into())
         .try_into()
         .expect("Failed to parse APP_ENVIRONMENT.");
